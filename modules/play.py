@@ -87,7 +87,7 @@ async def play(client, message, current_client):
         if songDetails is not None and len(songDetails) > 0:
             song_info = songDetails[0]
             if time_to_seconds(song_info['duration']) > (10*60):
-                m = await sent_msg.edit(f"**__😢 The specified song is too long , Please use a song with less than 10 min duration.__**")
+                m = await sent_msg.edit(f"**__The specified song is too long , Please use a song with less than 10 min duration.__**")
                 if current_client.get('remove_messages') is not None and current_client.get('remove_messages') > 0:
                     await delayDelete(m, current_client.get('remove_messages'))
                 return
@@ -96,7 +96,7 @@ async def play(client, message, current_client):
                 cover_file_name = None
                 # generate thumbnail only if the song is first one and not for queue
                 if pytgcalls_instance.active is not True:
-                    sent_msg = await sent_msg.edit(f"**__ 🎥 Generating Thumbnail __**")
+                    sent_msg = await sent_msg.edit(f"**__📥 Generating Thumbnail __**")
                     cover_file_name = None
                     if song_info.get('thumbnails') is not None and len(song_info['thumbnails']) > 0:
                         cover_file_name = f"images/{uuid.uuid4()}.png"
@@ -135,7 +135,7 @@ async def play(client, message, current_client):
 
                     response = await pytgcalls_instance.start_playback(filename, song_info, requested_by)
                     if response is not True:
-                        m = await sent_msg.edit(f"**__😢 Unable to perform the required operation.__**\n{response}")
+                        m = await sent_msg.edit(f"**__Unable to perform the required operation.__**\n{response}")
                         if current_client.get('remove_messages') is not None and current_client.get('remove_messages') > 0:
                             await delayDelete(m, current_client.get('remove_messages'))
 
@@ -159,7 +159,7 @@ async def play(client, message, current_client):
                             logInfo(
                                 f"Sending cover mesage in chat : {chat_id} : {cover_file_name}")
 
-                            caption = f"**🎧 Name:** `{(song_info['title'].strip())[:20]}`\n**⏱ Duration:** `{song_info['duration']}`\n**💡 Requester:** {req_by}\n\n`Join voice chat to listen to the song.`{footer_val}"
+                            caption = f"**🎵:** `{(song_info['title'].strip())[:20]}`\n**🕐 Duration:** `{song_info['duration']}`\n**Requester:** 👤 {req_by}\n\n`Its Currently Under Testing :P` @Zer0ByteOfficial"
                             m = await client.send_photo(
                                 message.chat.id,
                                 photo=cover_file_name,
@@ -170,13 +170,13 @@ async def play(client, message, current_client):
                                 os.remove(cover_file_name)
                         else:
 
-                            m = await sent_msg.edit(f"**✅ Playing Now **\n\n**🎧 Name:** `{(song_info['title'].strip())[:20]}`\n**⏱ Duration:** `{song_info['duration']}`\n**💡 Requester:** {req_by}{footer_val}")
+                            m = await sent_msg.edit(f"**🎶 Playing Now **\n\n**🎵 Name:** `{(song_info['title'].strip())[:20]}`\n**🕐 Duration:** `{song_info['duration']}`\n**Requested By:** 👤 {req_by}")
                         # if current_client.get('remove_messages') is not None and current_client.get('remove_messages') > 0:
                         #     await delayDelete(m, current_client.get('remove_messages'))
                         return
                     return
 
-        m = await sent_msg.edit(f"**__😢 Unable to find the required song, Please try again.__**")
+        m = await sent_msg.edit(f"**ERROR 69** __Song Not Found__ kek")
         if current_client.get('remove_messages') is not None and current_client.get('remove_messages') > 0:
             await delayDelete(m, current_client.get('remove_messages'))
         return
