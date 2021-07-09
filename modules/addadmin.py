@@ -13,7 +13,7 @@ MongoDBClient = MongoDBClient()
 async def refreshAdmins(client, message, current_client):
     try:
         chat_id = message.chat.id
-        logInfo(f"refreshadmins command in chat : {chat_id}")
+        logInfo(f"Zer0Byte Music Beta Refreshed : {chat_id}")
 
         admins = await client.get_chat_members(chat_id, filter="administrators")
         admins = list(
@@ -136,7 +136,7 @@ async def listAdmins(client, message, current_client):
         logInfo(f"listadmins command in chat : {chat_id}")
 
         if len(current_client['admins']) == 0:
-            msg = "**__No MusicPlayer Admins have been added yet.__**"
+            msg = "**__No Zer0Byte Music Beta Admins have been added yet.__**"
         else:
             msg = "**Current MusicPlayer Admins:**\n\n"
             for i in range(len(current_client['admins'])):
@@ -176,7 +176,7 @@ async def adminModeToggle(client, message, current_client):
                     msg = msg + f"\n\n__Now any user can perform the common bot actions.__"
 
         else:
-            msg = f"**😯Incorrect command, Correct Usage ⤵️ **\n__/adminmode on|off__"
+            msg = f"**Incorrect command, Correct Usage ⤵️ **\n__/adminmode on|off__"
 
         m = await client.send_message(message.chat.id, f"{msg}")
         await delayDelete(m, 10)
