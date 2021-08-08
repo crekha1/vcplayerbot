@@ -7,7 +7,7 @@ from utils.MongoClient import MongoDBClient
 MongoDBClient = MongoDBClient()
 
 
-@Client.on_message(filters.command(['refreshadmins', 'refreshadmins@vcplayerbot']) & ~filters.edited & ~filters.bot)
+@Client.on_message(filters.command(['refreshadmins', 'refreshadmins@Zer0ByteMusic_0bot']) & ~filters.edited & ~filters.bot)
 @database_check
 @chat_allowed
 @admin_mode_check
@@ -36,7 +36,7 @@ async def refreshAdmins(client, message, current_client):
         return
 
 
-@Client.on_message(filters.command(['auth', 'auth@vcplayerbot']) & ~filters.edited & ~filters.bot)
+@Client.on_message(filters.command(['auth', 'auth@Zer0ByteMusic_0bot']) & ~filters.edited & ~filters.bot)
 @database_check
 @chat_allowed
 @admin_check
